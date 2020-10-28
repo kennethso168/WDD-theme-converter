@@ -153,17 +153,17 @@ def convert_to_json(inp_dir):
 
     inp = open(inp_dir + '_wdd/metadata.xml', mode='r')
     meta = Soup(inp.read(), features="lxml")
-    out = open(inp_dir + '_wdd/' + inp_dir + '_wdd.json', mode='w')
+    out = open(inp_dir + '_wdd/' + os.path.basename(inp_dir) + '_wdd.json', mode='w')
 
     temp = open(inp_dir + '_wdd/temp.txt', mode='w+')
     temp.write(meta.get_text())
     temp.seek(0, 0)
 
     out.write('{\n'
-              '\t"imagesZipUri": "' + inp_dir + '.ddw",\n'
+              '\t"imagesZipUri": "' + os.path.basename(inp_dir) + '.ddw",\n'
               '\t"imageFilename": "' + os.path.basename(inp_dir).replace(' ', '_') + '_*.jpg",\n'
               '\t"imageCredits": "convert_to_json.py by kolaqsq",\n'
-              '\t"displayName": "' + inp_dir + '",\n')
+              '\t"displayName": "' + os.path.basename(inp_dir) + '",\n')
 
     for line in temp:
         if line.find('a\n') != -1:
