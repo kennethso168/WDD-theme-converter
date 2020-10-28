@@ -147,7 +147,7 @@ def h24_convert(input_data, json):
 
     return json
 
-def convert_to_json(inp_dir):
+def main(inp_dir):
     if not os.path.isdir(inp_dir + '_wdd'):
         shutil.copytree(inp_dir, inp_dir + '_wdd')
 
@@ -186,6 +186,9 @@ def convert_to_json(inp_dir):
         for folderName, subfolders, filenames in os.walk(inp_dir + '_wdd'):
             for filename in filenames:
                 theme_file.write(inp_dir + '_wdd/' + filename, filename)
+
+def convert_to_json(inp_dir: str):
+    main(inp_dir.replace("\\", "/"))
 
 if __name__ == "__main__":
     inp_dir = sys.argv[1]
