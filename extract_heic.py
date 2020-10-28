@@ -16,14 +16,12 @@ import plistlib
 import re
 import sys
 from multiprocessing import Pool
+from itertools import repeat
 
 from wand.image import Image
 
-in_heic = sys.argv[1]
-out_dir = sys.argv[2]
 
-
-def process_image(i):
+def process_image(i, in_heic, out_dir):
     with Image(filename=f"{in_heic}[{i}]") as img:
         # Convert square images to 16:9 ratio
         if img.width / img.height != 16 / 9:
@@ -37,8 +35,7 @@ def process_image(i):
 
     print('.', end="", flush=True)
 
-
-if __name__ == "__main__":
+def extract_heic(in_heic, out_dir):
     if not os.path.isdir(out_dir):
         os.mkdir(out_dir)
 
@@ -67,9 +64,14 @@ if __name__ == "__main__":
 
     try:
         pool = Pool()
-        pool.map(process_image, range(num_frames))
+        pool.starmap(process_image, ((i, in_heic, out_dir) for i in range(num_frames)))
     finally:
         pool.close()
         pool.join()
 
     print("done!")
+
+if __name__ == "__main__":
+    in_heic = sys.argv[1]
+    out_dir = sys.argv[2]
+    extract_heic(in_heic, out_dir)
