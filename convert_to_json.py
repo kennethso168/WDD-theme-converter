@@ -9,8 +9,6 @@ from zipfile import ZipFile
 
 from bs4 import BeautifulSoup as Soup
 
-inp_dir = sys.argv[1]
-
 
 def solar_convert(input_data, json):
     sunrise_img = []
@@ -149,8 +147,7 @@ def h24_convert(input_data, json):
 
     return json
 
-
-if __name__ == "__main__":
+def convert_to_json(inp_dir):
     if not os.path.isdir(inp_dir + '_wdd'):
         shutil.copytree(inp_dir, inp_dir + '_wdd')
 
@@ -189,3 +186,8 @@ if __name__ == "__main__":
         for folderName, subfolders, filenames in os.walk(inp_dir + '_wdd'):
             for filename in filenames:
                 theme_file.write(inp_dir + '_wdd/' + filename, filename)
+
+if __name__ == "__main__":
+    inp_dir = sys.argv[1]
+    convert_to_json(inp_dir)
+  
