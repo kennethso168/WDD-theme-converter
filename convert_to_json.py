@@ -44,7 +44,7 @@ def solar_convert(input_data, json):
         else:
             json.write('\t\t' + str(sunrise_img[0][2] + 1) + '\n')
     else:
-        json.write('\t\t' + str(day_img[0][2] + 1) + ',\n')
+        json.write('\t\t' + str(day_img[0][2] + 1) + '\n')
     json.write('\t],\n')
 
     json.write('\t"dayImageList": [\n')
@@ -65,7 +65,7 @@ def solar_convert(input_data, json):
         else:
             json.write('\t\t' + str(sunset_img[0][2] + 1) + '\n')
     else:
-        json.write('\t\t' + str(night_img[0][2] + 1) + ',\n')
+        json.write('\t\t' + str(night_img[0][2] + 1) + '\n')
     json.write('\t],\n')
 
     json.write('\t"nightImageList": [\n')
@@ -112,7 +112,7 @@ def h24_convert(input_data, json):
         else:
             json.write('\t\t' + str(sunrise_img[0][1] + 1) + '\n')
     else:
-        json.write('\t\t' + str(day_img[0][1] + 1) + ',\n')
+        json.write('\t\t' + str(day_img[0][1] + 1) + '\n')
     json.write('\t],\n')
 
     json.write('\t"dayImageList": [\n')
@@ -133,7 +133,7 @@ def h24_convert(input_data, json):
         else:
             json.write('\t\t' + str(sunset_img[0][1] + 1) + '\n')
     else:
-        json.write('\t\t' + str(night_img[0][1] + 1) + ',\n')
+        json.write('\t\t' + str(night_img[0][1] + 1) + '\n')
     json.write('\t],\n')
 
     json.write('\t"nightImageList": [\n')
