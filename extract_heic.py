@@ -35,7 +35,7 @@ def process_image(i, in_heic, out_dir):
 
     print('.', end="", flush=True)
 
-def extract_heic(in_heic, out_dir):
+def main(in_heic, out_dir):
     if not os.path.isdir(out_dir):
         os.mkdir(out_dir)
 
@@ -70,6 +70,9 @@ def extract_heic(in_heic, out_dir):
         pool.join()
 
     print("done!")
+
+def extract_heic(in_heic, out_dir):
+    main(in_heic.replace("\\", "/"), out_dir.replace("\\", "/"))
 
 if __name__ == "__main__":
     in_heic = sys.argv[1]
